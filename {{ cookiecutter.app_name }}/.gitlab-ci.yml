@@ -1,0 +1,31 @@
+stages:
+  - cruft-check
+
+cruft-check:
+  stage: cruft-check
+  variables:
+    APP_NAME: '{{ cookiecutter.app_name }}'
+  tags:
+    - canway-tag
+  before_script:
+    - pwd
+    - whoami
+    - which python
+    - which node && node --version
+    - which npm && npm --version
+    - LANG="zh_CN.utf8"
+    - export LC_ALL=zh_CN.UTF-8
+    - pip list
+    - pip install poetry
+    - pyenv versions
+    - pyenv install -l
+    # python3 项目创建专属虚拟环境
+    - pyenv install 3.9.6
+    - pyenv virtualenv 3.9.6 ${APP_NAME}_py3.9.6 || echo "virtualenv exist"
+    - pyenv shell ${APP_ID}_py3.9.6
+    - poetry install
+  script:
+    - cruft check -dev
+  except:
+    - /^master.*/
+    - /^release.*/
