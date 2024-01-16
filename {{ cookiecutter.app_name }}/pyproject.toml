@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "std_exporter"
+version = "1.0.0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+pre-commit = "^3.6.0"
+urllib3 = "1.26.18"
+cruft = "2.15.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+[[tool.poetry.source]]
+name = "tencent"
+url = "https://mirrors.cloud.tencent.com/pypi/simple"
+default = true
+
+[[tool.poetry.source]]
+name = "kingeye"
+url = "https://bkrepo.cwoa.net/pypi/aiops/kingeye-pypi/simple"
+secondary = true
