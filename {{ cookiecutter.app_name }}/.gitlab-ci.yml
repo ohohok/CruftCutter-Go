@@ -16,16 +16,16 @@ cruft-check:
     - LANG="zh_CN.utf8"
     - export LC_ALL=zh_CN.UTF-8
     - pip list
-    - pip install poetry
-    - pyenv versions
     - pyenv install -l
+    - pyenv install 3.9.6 -s
+    - pyenv versions
     # python3 项目创建专属虚拟环境
-    - pyenv install 3.9.6
     - pyenv virtualenv 3.9.6 ${APP_NAME}_py3.9.6 || echo "virtualenv exist"
-    - pyenv shell ${APP_ID}_py3.9.6
+    - pyenv shell ${APP_NAME}_py3.9.6
+    - pip install poetry==1.4.0
     - poetry install
   script:
-    - cruft check -dev
+    - cruft check -c dev
   except:
     - /^master.*/
     - /^release.*/
